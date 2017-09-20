@@ -37,8 +37,9 @@ Process:
 
 Add Groups in pillar/base/groups.sls:
 	For Eg. I have added below information already. You can replace "family" with your Group Name.
+
 	groups:
-   	  - family
+	  - family
 
 	SUDOERS:
           - '%family   ALL=(ALL)       NOPASSWD: ALL'
@@ -64,18 +65,26 @@ Add Users in pillar/base/users.sls:
 Note: To delete User, replace "True" to "False"
 
 Apply States Manually on Gateway Machine -
+
 	salt -G 'role: gateway' state.sls users.sshd_config
+
 	salt -G 'role: gateway' state.sls users.create_groups
+
 	salt -G 'role: gateway' state.sls users.create_lin_user
+
 	salt -G 'role: gateway' state.sls users.create_iam_user
 
 On Other Instance Apply just create_groups, sshd_config and create_lin_user
+
 	salt 'instance1' state.sls create_groups
+
 	salt 'instance1' state.sls sshd_config
+
 	salt 'instance1' state.sls create_lin_user
 
 
 Setup daily cron for Checking up key rotation:
+
 	salt -G 'role: gateway' state.sls users.rotatekeys
 
  
