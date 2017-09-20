@@ -47,8 +47,9 @@ Add Groups in pillar/base/groups.sls:
 Add Users in pillar/base/users.sls:
 	For eg. I have added below 2 users in it already. Replace "ganesh" & "neelesh" with your usernames
 	Also change "family" to your groupname.
+
 	users:
-  	  - ganesh:
+	  - ganesh:
      	    present: True
      	    groups:
        	      - family
