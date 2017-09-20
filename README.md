@@ -35,14 +35,15 @@ Workflow:
 
 - Same script is used in /etc/ssh/sshd_config as “AuthorizedKey Command”.
 
+Files:
 
-base/top.sls -> Top file for Users
+	base/top.sls -> Top file for Users
+	
+	base/users -> State files of Users
 
-base/users -> State files of Users
+	base/_states -> Salt State Modules for managing Users in IAM
 
-base/_states -> Salt State Modules for managing Users in IAM
-
-base/users/scripts --> Scripts for getting Public Keys from SSH
+	base/users/scripts --> Scripts for getting Public Keys from SSH
 
 Process:
 - All States are under base/users directory. It should be coppied under file_roots
