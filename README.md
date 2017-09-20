@@ -32,6 +32,8 @@ Process:
 - Add content of base/top.sls to your top file.
 - Copy files of pillar/base under your pillar_roots
 - Copy content of pillar/base/top.sls to your pillar's top.sls
+- Copy folder base/_states under your file_roots
+- Execute -> salt '*' saltutil.sync_all
 
 Add Groups in pillar/base/groups.sls:
 	For Eg. I have added below information already. You can replace "family" with your Group Name.
@@ -56,7 +58,11 @@ Add Users in pillar/base/users.sls:
               - family
 
 
+- Copy folder base/_states under your file_roots
+- Execute -> salt '*' saltutil.refresh_pillar
+
 Note: To delete User, replace "True" to "False"
+
 Apply States Manually on Gateway Machine -
 	salt -G 'role: gateway' state.sls users.sshd_config
 	salt -G 'role: gateway' state.sls users.create_groups
