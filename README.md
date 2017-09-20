@@ -1,30 +1,47 @@
 # salt-iamuser-sshkey
 
 Salt based User Management for Linux and AWS IAM.
+
 SSH Keys will be stored in IAM.
+
 Prerequisites:
+
 - There should be 3 or 2  Linux EC2 instances:
   - Salt-master
   - Gateway
   - instance1
+
 - On Gateway, Salt Grain "role" should be set to "gateway" in /etc/salt/grains
+
 - Boto3 should be installed on all
+
 - Gateway Machine will require read-write access to AWS IAM, to list, create, delete user, add, delete, update SSH-keys.
 
 Workflow:
+
 - Configure SSHD "/etc/sshd_config" to pull key from IAM and use for Authentication: AuthorizedKey Command
+
 - User will be created on Gateway
+
 - Generate SSH keypair on Gateway
+
 - User will be created in IAM
+
 - Upload SSH Public key in IAM
+
 - All instances will use same public key for Authentication
+
 - One Python script will actually pulls SSH public key from IAM.
+
 - Same script is used in /etc/ssh/sshd_config as “AuthorizedKey Command”.
 
 
 base/top.sls -> Top file for Users
+
 base/users -> State files of Users
+
 base/_states -> Salt State Modules for managing Users in IAM
+
 base/users/scripts --> Scripts for getting Public Keys from SSH
 
 Process:
