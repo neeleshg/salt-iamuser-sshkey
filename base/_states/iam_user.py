@@ -1,10 +1,16 @@
+'''
+    This module is for Managing Users in IAM
+    
+    Auth: Neelesh Gurjar 
+'''
+
 import boto3
 import os
 import sys
 import salt
 import salt.exceptions
 
-__virtualname__ = 'mca_iam_group'
+__virtualname__ = 'iam_user'
 
 # Function to initialize AWS Session
 def _session(keyid=None,key=None):

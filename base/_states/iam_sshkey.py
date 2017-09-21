@@ -1,3 +1,9 @@
+'''
+    This Module is to manage SSH Keys in IAM
+    
+    Auth: Neelesh Gurjar
+'''
+
 import boto3
 import os
 import sys
@@ -5,7 +11,7 @@ import salt
 import salt.exceptions
 from datetime import date,datetime,timedelta
 
-__virtualname__ = 'mca_iam_sshkey'
+__virtualname__ = 'iam_sshkey'
 
 # Function to initialize AWS Session
 

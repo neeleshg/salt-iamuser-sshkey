@@ -1,10 +1,21 @@
+'''
+    This Module is to Manage Linux Groups
+    Create state as below:
+    create_group:
+      iam_group.present:
+        - name: GroupName
+        - keyid: Optional Access Key
+        - key: Optional Key
+    Auth: Neelesh Gurjar
+'''
+
 import boto3
 import os
 import sys
 import salt
 import salt.exceptions
 
-__virtualname__ = 'mca_iam_group'
+__virtualname__ = 'iam_group'
 
 # Function to initialize AWS Session
 def _session(keyid=None,key=None):
