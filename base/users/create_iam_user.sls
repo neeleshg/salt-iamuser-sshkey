@@ -1,6 +1,6 @@
-{% for attribute in pillar['users'] %}
-{% for s_user in attribute %}
-{% if attribute[s_user]['present'] %}
+{% for s_attri in pillar['users'] %}
+{% for s_user in s_attri %}
+{% if s_attri[s_user]['present'] %}
 
 create iam user {{ s_user }}:
   iam_user.present:

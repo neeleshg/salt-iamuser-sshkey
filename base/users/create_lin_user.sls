@@ -1,12 +1,9 @@
 include:
   - .create_groups
-#  - .def_user
-#  - .sshd_config
-#  - .add_sudo
  
-{% for attribute in pillar['users'] %}
-{% for s_user in attribute %}
-{% if attribute[s_user]['present'] %}
+{% for s_attri in pillar['users'] %}
+{% for s_user in s_attri %}
+{% if s_attri[s_user]['present'] %}
 
 {{ s_user }}:
   user:
@@ -15,12 +12,12 @@ include:
     - shell: /bin/bash
     - maxdays: 99999
     - optional_groups:
-{% for s_group in attribute[s_user]['groups'] %}
-      - {{ g }}
+{% for s_group in s_attri[s_user]['groups'] %}
+      - {{ s_group }}
 {% endfor %}
     - require:
-{% for g in attribute[s_user]['groups'] %}
-      - group: {{ g }}
+{% for s_group in s_attri[s_user]['groups'] %}
+      - group: {{ s_group }}
 {% endfor %}
 
 create_pub_{{ s_user }}:

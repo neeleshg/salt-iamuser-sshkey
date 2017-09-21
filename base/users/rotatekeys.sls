@@ -1,6 +1,6 @@
-{% for attribute in pillar['users'] %}
-{% for s_user in attribute %}
-{% if attribute[s_user]['present'] %}
+{% for s_attri in pillar['users'] %}
+{% for s_user in s_attri %}
+{% if s_attri[s_user]['present'] %}
 
 check_rotation_{{ s_user }}:
   iam_sshkey.rotate:
@@ -15,7 +15,7 @@ create_pub_{{ s_user }}:
     - shell: /bin/bash
     - user: {{ s_user }}
     - watch:
-      -  iam_sshkey.rotate: check_rotation_{{ s_user }}
+      -  iam_sshkey: check_rotation_{{ s_user }}
 
 manage ssh public keys in iam {{ s_user }}:
   iam_sshkey.present:
